@@ -18,7 +18,9 @@ app.use(routes);
 const otherConn = "mongodb://root:root@192.168.99.100/reactreadinglist?authSource=admin"
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || otherConn);
+const MONGODB_URI = process.env.MONGODB_URI || otherConn;
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
 
 // Start the API server
 app.listen(PORT, function() {
